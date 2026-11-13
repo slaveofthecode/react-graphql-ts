@@ -42,7 +42,7 @@ const resolvers = {
 	Mutation: {
 		addUser: (
 			parent: any,
-			args: { name: any; age: any; weight: any; isMarried: any }
+			args: { name: string; age: number; weight: number; isMarried: boolean }
 		): User => {
 			const { name, age, weight, isMarried } = args;
 			const newUser: User = {
@@ -52,7 +52,7 @@ const resolvers = {
 				weight,
 				isMarried,
 			};
-
+			console.log(`SERVER: new user ${JSON.stringify(newUser)}`);
 			users.push(newUser);
 
 			return newUser;

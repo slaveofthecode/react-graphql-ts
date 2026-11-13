@@ -6,6 +6,7 @@
 - [TypeScript](https://www.typescriptlang.org/)
 
 - [Bun](https://bun.com/)
+- [Biome](https://biomejs.dev/)
 
 ---
 
@@ -73,3 +74,17 @@ bunx create-vite
 > Install with bun and start now?: `Yes`
 
 ## Change `ESLint` by `Biome`
+
+```bash
+bun remove eslint @eslint/js eslint-plugin-react-hooks eslint-plugin-react-refresh globals typescript-eslint
+bun add -d --exact @biomejs/biome
+bunx biome init
+```
+
+## Apollo client
+
+- dependencies
+
+```bash
+bun add graphql @apollo/client
+```
