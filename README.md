@@ -41,7 +41,7 @@ flowchart LR
 ```text
 .
 ├── client/   React + Vite + Apollo Client, linted and formatted with Biome
-└── server/   Apollo Server running on Bun
+└── server/   Apollo Server on Bun, linted and formatted with Biome
 ```
 
 ## Requirements
@@ -74,22 +74,25 @@ The client expects the server at `http://localhost:4000`.
 
 ### Client
 
-| Command          | Description                              |
-| ---------------- | ---------------------------------------- |
-| `bun run dev`    | Start the Vite development server        |
-| `bun run build`  | Type-check and build for production      |
-| `bun run preview`| Preview the production build             |
-| `bun run lint`   | Check lint and formatting with Biome     |
-| `bun run format` | Format files with Biome                  |
-| `bun run check`  | Apply Biome lint and formatting fixes    |
+| Command           | Description                              |
+| ----------------- | ---------------------------------------- |
+| `bun run dev`     | Start the Vite development server        |
+| `bun run build`   | Type-check and build for production      |
+| `bun run preview` | Preview the production build             |
+| `bun run lint`    | Check lint and formatting with Biome     |
+| `bun run format`  | Format files with Biome                  |
+| `bun run check`   | Apply Biome lint and formatting fixes    |
 
 ### Server
 
-| Command              | Description                          |
-| -------------------- | ------------------------------------ |
-| `bun run dev`        | Start Apollo Server in watch mode    |
-| `bun run start`      | Start Apollo Server                  |
-| `bun run typecheck`  | Type-check with TypeScript           |
+| Command              | Description                              |
+| -------------------- | ---------------------------------------- |
+| `bun run dev`        | Start Apollo Server in watch mode        |
+| `bun run start`      | Start Apollo Server                      |
+| `bun run lint`       | Check lint and formatting with Biome     |
+| `bun run format`     | Format files with Biome                  |
+| `bun run check`      | Apply Biome lint and formatting fixes    |
+| `bun run typecheck`  | Type-check with TypeScript               |
 
 ## GraphQL API
 

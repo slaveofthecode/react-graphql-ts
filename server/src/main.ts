@@ -1,6 +1,6 @@
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
-import { users } from '../data/db.ts';
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+import { users } from "../data/db.ts";
 
 interface User {
 	id: string;
@@ -42,7 +42,7 @@ const resolvers = {
 	Mutation: {
 		addUser: (
 			parent: any,
-			args: { name: string; age: number; weight: number; isMarried: boolean }
+			args: { name: string; age: number; weight: number; isMarried: boolean },
 		): User => {
 			const { name, age, weight, isMarried } = args;
 			const newUser: User = {
