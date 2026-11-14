@@ -74,43 +74,45 @@ The client expects the server at `http://localhost:4000`.
 
 ### Client
 
-| Command           | Description                              |
-| ----------------- | ---------------------------------------- |
-| `bun run dev`     | Start the Vite development server        |
-| `bun run build`   | Type-check and build for production      |
-| `bun run preview` | Preview the production build             |
-| `bun run lint`    | Check lint and formatting with Biome     |
-| `bun run format`  | Format files with Biome                  |
-| `bun run check`   | Apply Biome lint and formatting fixes    |
+| Command           | Description                           |
+| ----------------- | ------------------------------------- |
+| `bun run dev`     | Start the Vite development server     |
+| `bun run build`   | Type-check and build for production   |
+| `bun run preview` | Preview the production build          |
+| `bun run lint`    | Check lint and formatting with Biome  |
+| `bun run format`  | Format files with Biome               |
+| `bun run check`   | Apply Biome lint and formatting fixes |
 
 ### Server
 
-| Command              | Description                              |
-| -------------------- | ---------------------------------------- |
-| `bun run dev`        | Start Apollo Server in watch mode        |
-| `bun run start`      | Start Apollo Server                      |
-| `bun run lint`       | Check lint and formatting with Biome     |
-| `bun run format`     | Format files with Biome                  |
-| `bun run check`      | Apply Biome lint and formatting fixes    |
-| `bun run typecheck`  | Type-check with TypeScript               |
+| Command             | Description                           |
+| ------------------- | ------------------------------------- |
+| `bun run dev`       | Start Apollo Server in watch mode     |
+| `bun run start`     | Start Apollo Server                   |
+| `bun run lint`      | Check lint and formatting with Biome  |
+| `bun run format`    | Format files with Biome               |
+| `bun run check`     | Apply Biome lint and formatting fixes |
+| `bun run typecheck` | Type-check with TypeScript            |
 
 ## GraphQL API
 
 ```graphql
 type Query {
-  getUsers: [User]
-  getUserById(id: ID!): User
+	getUsers: [User]
+	getUserById(id: ID!): User
 }
 
 type Mutation {
-  addUser(name: String!, age: Int!, weight: Float, isMarried: Boolean): User
+	addUser(name: String!, age: Int!, weight: Float, isMarried: Boolean): User
 }
 
 type User {
-  id: ID
-  name: String
-  age: Int
-  weight: Float
-  isMarried: Boolean
+	id: ID
+	name: String
+	age: Int
+	weight: Float
+	isMarried: Boolean
 }
 ```
+
+- Actualizar README con la nueva estructura, y porque se eligio esta forma. ( Este patrón se conoce como Feature-Sliced Design (FSD), Vertical Slice Architecture o Package-by-Feature (en contraste con Package-by-Layer o agrupación técnica). )
