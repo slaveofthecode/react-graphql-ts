@@ -1,14 +1,17 @@
-# Tech Stack
+# React GraphQL TS
+
+Full-stack GraphQL example with React + Apollo Client on the client and Apollo Server on the server.
+
+## Tech Stack
 
 - [GraphQL](https://graphql.org/)
 - [React](https://react.dev/)
-- [NodeJs](https://nodejs.org/)
+- [Node.js](https://nodejs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
-
 - [Bun](https://bun.com/)
 - [Biome](https://biomejs.dev/)
 
----
+## Architecture
 
 ```mermaid
 flowchart LR
@@ -33,70 +36,78 @@ flowchart LR
     Cache -->|6. Update UI| UI
 ```
 
----
+## Project Structure
 
-# Server
-
-- init
-
-```bash
-bun init -y
+```text
+.
+├── client/   React + Vite + Apollo Client, linted and formatted with Biome
+└── server/   Apollo Server running on Bun
 ```
 
-- add dependencies
+## Requirements
+
+- [Bun](https://bun.com/) 1.2 or newer
+
+## Getting Started
+
+### Server
 
 ```bash
-bun add graphql @apollo/server
-```
-
-- run
-
-```bash
-node src/main.ts
-```
-
-- using 'script'
-
-```bash
+cd server
+bun install
 bun run dev
 ```
 
----
+The GraphQL endpoint is available at `http://localhost:4000/`.
 
-# Client
-
-- init
+### Client
 
 ```bash
-bunx create-vite
-```
-
-- then, select the next one:
-
-  > - Project name: `.`
-  > - Select a framework: `React`
-  > - Select a variant: `TypeScript + React Compiler`
-  > - Which linter to use?: `ESLint` - **then, I'll change by Biome**
-  > - Install with bun and start now?: `Yes`
-
-## Change `ESLint` by `Biome`
-
-```bash
-bun remove eslint @eslint/js eslint-plugin-react-hooks eslint-plugin-react-refresh globals typescript-eslint
-bun add -d --exact @biomejs/biome
-bunx biome init
-```
-
-## Apollo Client
-
-- dependencies
-
-```bash
-bun add graphql @apollo/client
-```
-
-- run `script`
-
-```bash
+cd client
+bun install
 bun run dev
+```
+
+The client expects the server at `http://localhost:4000`.
+
+## Scripts
+
+### Client
+
+| Command          | Description                              |
+| ---------------- | ---------------------------------------- |
+| `bun run dev`    | Start the Vite development server        |
+| `bun run build`  | Type-check and build for production      |
+| `bun run preview`| Preview the production build             |
+| `bun run lint`   | Check lint and formatting with Biome     |
+| `bun run format` | Format files with Biome                  |
+| `bun run check`  | Apply Biome lint and formatting fixes    |
+
+### Server
+
+| Command              | Description                          |
+| -------------------- | ------------------------------------ |
+| `bun run dev`        | Start Apollo Server in watch mode    |
+| `bun run start`      | Start Apollo Server                  |
+| `bun run typecheck`  | Type-check with TypeScript           |
+
+## GraphQL API
+
+```graphql
+type Query {
+  getUsers: [User]
+  getUserById(id: ID!): User
+}
+
+type Mutation {
+  addUser(name: String!, age: Int!, weight: Float, isMarried: Boolean): User
+}
+
+type User {
+  id: ID
+  name: String
+  age: Int
+  weight: Float
+  isMarried: Boolean
+}
 ```

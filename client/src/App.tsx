@@ -1,7 +1,6 @@
-import { gql } from '@apollo/client';
-import { useQuery, useMutation } from '@apollo/client/react';
-import './App.css';
-import { useState } from 'react';
+import { gql } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client/react";
+import { useState } from "react";
 
 interface User {
 	id: string;
@@ -11,7 +10,7 @@ interface User {
 	isMarried?: boolean;
 }
 
-type NewUser = Omit<User, 'id'>;
+type NewUser = Omit<User, "id">;
 
 const GET_USERS = gql`
 	query {
@@ -59,7 +58,7 @@ function App() {
 		loading: getUserByIdLoading,
 	}: any = useQuery(GET_USER_BY_ID, {
 		variables: {
-			id: '2',
+			id: "2",
 		},
 	});
 
@@ -97,28 +96,28 @@ function App() {
 			<main>
 				<div
 					style={{
-						display: 'flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-						gap: '12px',
-						flexWrap: 'wrap',
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+						gap: "12px",
+						flexWrap: "wrap",
 					}}
 				>
 					{data.getUsers.map((user: User) => (
 						<div
 							key={user.id}
 							style={{
-								backgroundColor: 'rgba(0,0,0,.5',
-								padding: '1rem',
-								borderRadius: '12px',
-								textAlign: 'left',
-								boxShadow: '0px 0px 15px 0px rgba(255,255,255,.25)',
+								backgroundColor: "rgba(0,0,0,.5",
+								padding: "1rem",
+								borderRadius: "12px",
+								textAlign: "left",
+								boxShadow: "0px 0px 15px 0px rgba(255,255,255,.25)",
 							}}
 						>
 							<p>
 								<strong>{user.id}</strong> - <span>{user.name}</span>
 							</p>
-							<p>Is this user married ? {user.isMarried ? '🤦🏻‍♂️' : '😜'}</p>
+							<p>Is this user married ? {user.isMarried ? "🤦🏻‍♂️" : "😜"}</p>
 						</div>
 					))}
 				</div>
@@ -132,20 +131,20 @@ function App() {
 						) : (
 							<div
 								style={{
-									backgroundColor: 'rgba(0,0,0,.5',
-									padding: '1rem',
-									borderRadius: '12px',
-									textAlign: 'left',
-									boxShadow: '0px 0px 15px 0px rgba(255,255,255,.25)',
+									backgroundColor: "rgba(0,0,0,.5",
+									padding: "1rem",
+									borderRadius: "12px",
+									textAlign: "left",
+									boxShadow: "0px 0px 15px 0px rgba(255,255,255,.25)",
 								}}
 							>
 								<p>
-									<strong>{getUserByIdData.getUserById.id}</strong> -{' '}
+									<strong>{getUserByIdData.getUserById.id}</strong> -{" "}
 									<span>{getUserByIdData.getUserById.name}</span>
 								</p>
 								<p>
-									Is this user married ?{' '}
-									{getUserByIdData.getUserById.isMarried ? '🤦🏻‍♂️' : '😜'}
+									Is this user married ?{" "}
+									{getUserByIdData.getUserById.isMarried ? "🤦🏻‍♂️" : "😜"}
 								</p>
 							</div>
 						)}
@@ -195,7 +194,9 @@ function App() {
 						</div>
 					</div>
 					<div>
-						<button onClick={handleAddUser}>+</button>
+						<button type="button" onClick={handleAddUser}>
+							+
+						</button>
 					</div>
 				</div>
 			</main>

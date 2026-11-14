@@ -8,10 +8,8 @@
         "graphql": "^17.1.0",
       },
       "devDependencies": {
-        "@types/bun": "latest",
-      },
-      "peerDependencies": {
-        "typescript": "^5.0.0",
+        "@types/bun": "^1.4.4",
+        "typescript": "~5.9.3",
       },
     },
   },
