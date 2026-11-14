@@ -55,6 +55,12 @@ bun add graphql @apollo/server
 node src/main.ts
 ```
 
+- using 'script'
+
+```bash
+bun run dev
+```
+
 ---
 
 # Client
@@ -67,11 +73,11 @@ bunx create-vite
 
 - then, select the next one:
 
-> Project name: `.`
-> Select a framework: `React`
-> Select a variant: `TypeScript + React Compiler`
-> Which linter to use?: `ESLint` - **then, I'll change by Biome**
-> Install with bun and start now?: `Yes`
+  > - Project name: `.`
+  > - Select a framework: `React`
+  > - Select a variant: `TypeScript + React Compiler`
+  > - Which linter to use?: `ESLint` - **then, I'll change by Biome**
+  > - Install with bun and start now?: `Yes`
 
 ## Change `ESLint` by `Biome`
 
@@ -81,10 +87,16 @@ bun add -d --exact @biomejs/biome
 bunx biome init
 ```
 
-## Apollo client
+## Apollo Client
 
 - dependencies
 
 ```bash
 bun add graphql @apollo/client
+```
+
+- run `script`
+
+```bash
+bun run dev
 ```
