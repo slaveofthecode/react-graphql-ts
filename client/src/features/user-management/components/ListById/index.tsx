@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { skipToken, useQuery } from '@apollo/client/react';
+import { useState } from 'react';
 import { GET_USER_BY_ID } from '../../graphql/query';
 import style from './index.module.css';
 
@@ -17,7 +17,7 @@ const ListById = () => {
 
 	const { data, error, loading }: any = useQuery(
 		GET_USER_BY_ID,
-		trimmedId !== '' ? { variables: { id: trimmedId } } : skipToken
+		trimmedId !== '' ? { variables: { id: trimmedId } } : skipToken,
 	);
 
 	const user: User = data?.getUserById;

@@ -23,11 +23,15 @@ createRoot(document.getElementById('root')!).render(
 			<footer>
 				👨🏻‍💻 |{' '}
 				<strong>
-					<a target="_blank" href="https://slaveofthecode.vercel.app/">
+					<a
+						target="_blank"
+						href="https://slaveofthecode.vercel.app/"
+						rel="noopener"
+					>
 						Gustavo Lopez
 					</a>
 				</strong>
 			</footer>
 		</ApolloProvider>
-	</StrictMode>
+	</StrictMode>,
 );

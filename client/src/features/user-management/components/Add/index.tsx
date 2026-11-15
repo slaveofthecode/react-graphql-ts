@@ -1,8 +1,8 @@
-import { useState, type FormEvent } from 'react';
-import type { User } from '../../types';
 import { useMutation } from '@apollo/client/react';
+import { type FormEvent, useState } from 'react';
 import { ADD_USER } from '../../graphql/mutation';
 import { GET_USERS } from '../../graphql/query';
+import type { User } from '../../types';
 import style from './index.module.css';
 
 interface AddUserFormState {
@@ -50,10 +50,10 @@ const Add = () => {
 						return {
 							getUsers: [...existingData.getUsers, data.addUser],
 						};
-					}
+					},
 				);
 			},
-		}
+		},
 	);
 
 	const handleAddUser = async (e: FormEvent<HTMLFormElement>) => {

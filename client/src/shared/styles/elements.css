@@ -57,7 +57,7 @@ label {
 	font-weight: 400;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
 	width: 1.25rem; /* 20px */
 	height: 1.25rem; /* 20px */
 	accent-color: var(--color-light-dark);
@@ -73,7 +73,8 @@ p {
 	display: flex;
 	flex-direction: column;
 	min-height: calc(
-		100dvh - 4rem
+		100dvh -
+		4rem
 	); /* 4rem = body top + bottom padding (2rem + 2rem) */
 }
 

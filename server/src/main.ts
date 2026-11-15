@@ -1,6 +1,6 @@
-import { ApolloServer } from "@apollo/server";
-import { startStandaloneServer } from "@apollo/server/standalone";
-import { users } from "../data/db.ts";
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
+import { users } from '../data/db.ts';
 
 interface User {
 	id: string;
