@@ -1,80 +1,122 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import type { User } from '../../types';
 import { useMutation } from '@apollo/client/react';
 import { ADD_USER } from '../../graphql/mutation';
 import { GET_USERS } from '../../graphql/query';
 import style from './index.module.css';
 
-type NewUser = Omit<User, 'id'>;
+interface AddUserFormState {
+	name: string;
+	age: string;
+	weight: string;
+	isMarried: boolean;
+}
+
+interface AddUserData {
+	addUser: User;
+}
+
+interface AddUserVars {
+	name: string;
+	age: number;
+	weight?: number;
+	isMarried: boolean;
+}
+
+interface GetUsersData {
+	getUsers: User[];
+}
+
+const INITIAL_FORM: AddUserFormState = {
+	name: '',
+	age: '',
+	weight: '',
+	isMarried: false,
+};
 
 const Add = () => {
-	const [newUser, setNewUser] = useState<NewUser>();
+	const [newUser, setNewUser] = useState<AddUserFormState>(INITIAL_FORM);
 
-	const [addUser] = useMutation(ADD_USER, {
-		update(cache, { data }: { data: any }) {
-			if (!data?.addUser) return;
+	const [addUser, { loading, error }] = useMutation<AddUserData, AddUserVars>(
+		ADD_USER,
+		{
+			update(cache, { data }) {
+				if (!data?.addUser) return;
 
-			cache.updateQuery({ query: GET_USERS }, (existingData: any) => {
-				if (!existingData) return;
-				return {
-					getUsers: [...existingData.getUsers, data.addUser],
-				};
-			});
-		},
-	});
+				cache.updateQuery<GetUsersData>(
+					{ query: GET_USERS },
+					(existingData) => {
+						if (!existingData) return;
+						return {
+							getUsers: [...existingData.getUsers, data.addUser],
+						};
+					}
+				);
+			},
+		}
+	);
 
-	const handleAddUser = async () => {
-		console.log(newUser);
-		addUser({
+	const handleAddUser = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+
+		await addUser({
 			variables: {
-				name: newUser.name,
-				age: +newUser.age,
-				weight: +newUser.weight,
+				name: newUser.name.trim(),
+				age: Number(newUser.age),
+				weight: newUser.weight !== '' ? Number(newUser.weight) : undefined,
 				isMarried: newUser.isMarried,
 			},
 		});
+
+		setNewUser(INITIAL_FORM);
 	};
 
 	return (
 		<main className={style.main}>
 			<h2>Add</h2>
-			<div className={style['input-containers']}>
+			<form className={style['input-containers']} onSubmit={handleAddUser}>
 				<input
+					name="name"
 					placeholder="name..."
 					required
+					value={newUser.name}
 					onChange={(e) =>
 						setNewUser((prev) => ({ ...prev, name: e.target.value }))
 					}
 				/>
 				<input
+					name="age"
 					placeholder="age..."
 					type="number"
 					required
 					className={style['input-short']}
 					min={0}
 					max={120}
+					value={newUser.age}
 					onChange={(e) =>
-						setNewUser((prev: any) => ({
-							...prev,
-							age: e.target.value,
-						}))
+						setNewUser((prev) => ({ ...prev, age: e.target.value }))
 					}
 				/>
 				<input
-					placeholder="weigh"
+					name="weight"
+					placeholder="weight"
 					type="number"
 					className={style['input-short']}
 					min={0}
 					max={1000}
+					step={0.1}
+					value={newUser.weight}
 					onChange={(e) =>
-						setNewUser((prev: any) => ({ ...prev, weight: e.target.value }))
+						setNewUser((prev) => ({ ...prev, weight: e.target.value }))
 					}
 				/>
 				<div>
 					<label htmlFor="isMarried">Is married?</label>
 					<input
 						id="isMarried"
+						name="isMarried"
 						type="checkbox"
+						checked={newUser.isMarried}
 						onChange={(e) =>
 							setNewUser((prev) => ({
 								...prev,
@@ -83,10 +125,11 @@ const Add = () => {
 						}
 					/>
 				</div>
-				<button type="button" onClick={handleAddUser}>
-					+
+				<button type="submit" disabled={loading}>
+					{loading ? '...' : '+'}
 				</button>
-			</div>
+			</form>
+			{error && <p>Error: {error.message}</p>}
 		</main>
 	);
 };

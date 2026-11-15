@@ -23,7 +23,9 @@ createRoot(document.getElementById('root')!).render(
 			<footer>
 				👨🏻‍💻 |{' '}
 				<strong>
-					<a href="https://slaveofthecode.vercel.app/">Gustavo Lopez</a>
+					<a target="_blank" href="https://slaveofthecode.vercel.app/">
+						Gustavo Lopez
+					</a>
 				</strong>
 			</footer>
 		</ApolloProvider>
