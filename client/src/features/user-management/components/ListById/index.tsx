@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { skipToken, useQuery } from '@apollo/client/react';
-import { GET_USER_BY_ID } from '../graphql/query';
+import { GET_USER_BY_ID } from '../../graphql/query';
+import style from './index.module.css';
 
 interface User {
 	id: string;
@@ -10,28 +11,16 @@ interface User {
 	isMarried?: boolean;
 }
 
-// interface GetUserByIdData {
-// 	getUserById: User | null;
-// }
-
-// interface GetUserByIdVars {
-// 	id: string;
-// }
-
 const ListById = () => {
 	const [userId, setUserId] = useState('');
 	const trimmedId = userId.trim();
 
-	// const { data, error, loading } = useQuery<GetUserByIdData, GetUserByIdVars>(
-	// 	GET_USER_BY_ID,
-	// 	trimmedId !== '' ? { variables: { id: trimmedId } } : skipToken
-	// );
 	const { data, error, loading }: any = useQuery(
 		GET_USER_BY_ID,
 		trimmedId !== '' ? { variables: { id: trimmedId } } : skipToken
 	);
 
-	const user = data?.getUserById;
+	const user: User = data?.getUserById;
 
 	return (
 		<main>
@@ -50,11 +39,20 @@ const ListById = () => {
 						!error &&
 						trimmedId !== '' &&
 						(user ? (
-							<div>
-								<p>
-									<strong>{user.id}</strong> - <span>{user.name}</span>
-								</p>
-								<p>Is this user married? {user.isMarried ? '💞' : '🆓'}</p>
+							<div className={style['data-container']}>
+								<ul>
+									<li>
+										<div>
+											<strong>{user.name}</strong>
+											{' | '}
+											<span>{user.age} años</span>
+											{' | '}
+											<span>{user.weight} kg.</span>
+											{' | '}
+											<span>{user.isMarried ? '💞 married' : '🆓 single'}</span>
+										</div>
+									</li>
+								</ul>
 							</div>
 						) : (
 							<p>No results</p>

@@ -1,0 +1,22 @@
+:root {
+	--bg-primary: #0001;
+	--bg-secondary: #fff;
+
+	--text-primary: #000;
+	--text-placeholder: #0005;
+
+	--color-dark: #0009;
+	--color-light-dark: rgba(0, 0, 0, 0.3);
+
+	--font-family: Verdana;
+}
+
+/* Global reset */
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: var(--font-family);
+}

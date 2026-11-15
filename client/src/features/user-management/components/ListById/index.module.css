@@ -1,0 +1,6 @@
+.data-container {
+	padding: 1rem;
+	margin: 0.25rem;
+	display: flex;
+	gap: 8px;
+}

@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import type { User } from '../types';
+import type { User } from '../../types';
 import { useMutation } from '@apollo/client/react';
-import { ADD_USER } from '../graphql/mutation';
-import { GET_USERS } from '../graphql/query';
+import { ADD_USER } from '../../graphql/mutation';
+import { GET_USERS } from '../../graphql/query';
+import style from './index.module.css';
 
 type NewUser = Omit<User, 'id'>;
 
@@ -35,9 +36,9 @@ const Add = () => {
 	};
 
 	return (
-		<main>
+		<main className={style.main}>
 			<h2>Add</h2>
-			<div>
+			<div className={style['input-containers']}>
 				<input
 					placeholder="name..."
 					required
@@ -49,6 +50,9 @@ const Add = () => {
 					placeholder="age..."
 					type="number"
 					required
+					className={style['input-short']}
+					min={0}
+					max={120}
 					onChange={(e) =>
 						setNewUser((prev: any) => ({
 							...prev,
@@ -59,6 +63,9 @@ const Add = () => {
 				<input
 					placeholder="weigh"
 					type="number"
+					className={style['input-short']}
+					min={0}
+					max={1000}
 					onChange={(e) =>
 						setNewUser((prev: any) => ({ ...prev, weight: e.target.value }))
 					}
@@ -76,8 +83,6 @@ const Add = () => {
 						}
 					/>
 				</div>
-			</div>
-			<div>
 				<button type="button" onClick={handleAddUser}>
 					+
 				</button>

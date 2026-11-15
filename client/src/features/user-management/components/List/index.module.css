@@ -1,0 +1,24 @@
+.list-container {
+	padding: 1rem;
+
+	.row {
+		height: 48px;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		transition: all ease-in-out 0.25s 0s;
+		opacity: 0.75;
+		* {
+			width: 33%;
+			text-align: center;
+		}
+
+		&:hover {
+			opacity: 1;
+		}
+
+		&:nth-child(odd) {
+			background-color: var(--text-placeholder);
+		}
+	}
+}
